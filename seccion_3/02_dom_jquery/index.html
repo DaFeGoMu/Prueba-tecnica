@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ejercicio 2 – DOM con jQuery y Vanilla JS</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      max-width: 480px;
+      margin: 60px auto;
+      padding: 0 20px;
+      color: #222;
+    }
+    h2 { margin-bottom: 24px; }
+    label { display: block; margin-bottom: 6px; font-weight: bold; }
+    input[type="text"] {
+      width: 100%;
+      padding: 10px 12px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+      margin-bottom: 12px;
+    }
+    button {
+      padding: 10px 24px;
+      font-size: 1rem;
+      background: #2563eb;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover { background: #1d4ed8; }
+    #resultado {
+      margin-top: 24px;
+      padding: 14px 16px;
+      background: #f1f5f9;
+      border-left: 4px solid #2563eb;
+      border-radius: 4px;
+      font-size: 1.1rem;
+      min-height: 48px;
+      word-break: break-word;
+    }
+    #resultado:empty { display: none; }
+  </style>
+</head>
+<body>
+
+  <h2>Convertir texto a mayúsculas</h2>
+
+  <label for="nombre">Ingresa un nombre:</label>
+  <input type="text" id="nombre" placeholder="Ej: María García" />
+
+  <button id="btnGuardar">Guardar</button>
+
+  <div id="resultado"></div>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+  <script>
+    /**
+     * Lógica de transformación — Vanilla JS puro
+     */
+    function convertirMayusculas(texto) {
+      return texto.toUpperCase();
+    }
+
+    /**
+     * Manejo de eventos — jQuery
+     */
+    $(document).ready(function () {
+
+      $('#btnGuardar').on('click', function () {
+        const valorCampo = $('#nombre').val().trim();
+
+        if (valorCampo === '') {
+          $('#resultado').text('Por favor ingresa un nombre antes de guardar.');
+          return;
+        }
+
+        const textoEnMayusculas = convertirMayusculas(valorCampo);
+        $('#resultado').text(textoEnMayusculas);
+      });
+
+      $('#nombre').on('keypress', function (e) {
+        if (e.key === 'Enter') {
+          $('#btnGuardar').trigger('click');
+        }
+      });
+
+    });
+  </script>
+
+</body>
+</html>

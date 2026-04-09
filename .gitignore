@@ -1,0 +1,11 @@
+# Entornos y secretos (no subir credenciales reales)
+.env
+.env.*
+!.env.example
+
+# SO / IDE
+Thumbs.db
+Desktop.ini
+.DS_Store
+.idea/
+.vscode/
